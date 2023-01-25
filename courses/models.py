@@ -1,4 +1,5 @@
 from django.db import models
+from teachers.models import Teacher
 
 # Create your models here.
 
@@ -19,6 +20,7 @@ class Tag(models.Model):
 
 
 class Course(models.Model):
+    teacher = models.ForeignKey(Teacher, null=True, on_delete=models.CASCADE)
     name= models.CharField(max_length=200, unique=True, verbose_name="Kurs Adi", help_text="Kurs Adini Yaziniz")
     description = models.TextField(blank=True, null=True)
     category = models.ForeignKey(Category, null=True, on_delete=models.DO_NOTHING)

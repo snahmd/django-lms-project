@@ -86,14 +86,21 @@
         <div class="container">
             <div class="section-title row text-center">
                 <div class="col-md-8 offset-md-2">
-                    <h3>About</h3>
+                    <h3>Latest Courses</h3>
                     <p class="lead">Lorem Ipsum dolroin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem!</p>
                 </div>
             </div><!-- end title -->
         
 			{% for course in courses %}
-
-            <div class="row align-items-center">
+			<div class="row align-items-center">
+			{% if not forloop.first %}
+			<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+				<div class="post-media wow fadeIn">
+					<img src="{{ course.image.url }}" alt="" class="img-fluid img-rounded">
+				</div><!-- end media -->
+			</div><!-- end col -->
+			{% endif %}
+            
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div class="message-box">
                         
@@ -101,15 +108,17 @@
 						<p>{{ course.description }}</p>
                         
 
-                        <a href="#" class="hover-btn-new orange"><span>Learn More</span></a>
+                        <a href="{% url 'course_detail' course.category.slug course.id%}" class="hover-btn-new orange"><span>Learn More</span></a>
                     </div><!-- end messagebox -->
                 </div><!-- end col -->
 				
+				{% if forloop.first %}
 				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div class="post-media wow fadeIn">
                         <img src="{{ course.image.url }}" alt="" class="img-fluid img-rounded">
                     </div><!-- end media -->
                 </div><!-- end col -->
+				{% endif %}
 			</div>
 			{% endfor %}
 			<!-- end row -->
@@ -200,7 +209,7 @@
 
 				<div class="col-md-4 col-sm-4 col-xs-12">
 					<span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-online"></i></span>
-					<p class="stat_count">240</p>
+					<p class="stat_count">{{total_course}}</p>
 					<h3>Courses</h3>
 				</div><!-- end col -->
 
