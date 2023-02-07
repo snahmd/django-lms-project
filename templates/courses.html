@@ -1,12 +1,10 @@
 {% extends 'partials/_base.html' %}
 {% load static %}
 {% block content %}
-
-  
 	
 	<div class="all-title-box">
 		<div class="container text-center">
-			<h1>Courses</h1>
+			<h1>Courses</span></h1>
 		</div>
 	</div>
 	
@@ -14,9 +12,9 @@
         <div class="container">
             <div class="row"> 
                 <div class="col-lg-9 blog-post-single">
-                    
-                    <div class="row">
-                        {% for course in courses %} 
+					
+                    <div class="row"> 
+						{% for course in courses %}
                         <div class="col-lg-6 col-md-6 col-12 mb-4">
                             <div class="course-item">
                                 <div class="image-blog">
@@ -27,9 +25,8 @@
                                         <h2><a href="{% url 'course_detail' course.category.slug course.id %}" title="">{{course.name}}</a></h2>
                                     </div>
                                     <div class="course-desc">
-                                        <p>{{course.description | truncatechars:100}}</p>
+                                        <p>{{course.description | truncatechars:140}}</p>
                                     </div>
-                                     
                                 </div>
                                 <div class="course-meta-bot">
                                     <ul>
@@ -40,81 +37,17 @@
                                 </div>
                             </div>
                         </div><!-- end col -->
-                    {% endfor %}
-                        
+						{% endfor %}
                     </div><!-- end row -->
-					
-					<div class="blog-author">
-						<div class="author-bio">
-							<h3 class="author_name"><a href="#">Tom Jobs</a></h3>
-							<h5>CEO at <a href="#">SmartEDU</a></h5>
-							<p class="author_det">
-								Lorem ipsum dolor sit amet, consectetur adip, sed do eiusmod tempor incididunt  ut aut reiciendise voluptat maiores alias consequaturs aut perferendis doloribus omnis saperet docendi nec, eos ea alii molestiae aliquand.
-							</p>
-						</div>
-						<div class="author-desc">
-							<img src="images/author.jpg" alt="about author">
-							<ul class="author-social">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-skype"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					
-					<div class="blog-comments">
-						<h4>Comments (3)</h4>
-						<div id="comment-blog">
-							<ul class="comment-list">
-								<li class="comment">
-									<div class="avatar"><img alt="" src="images/avatar-01.jpg" class="avatar"></div>
-									<div class="comment-container">
-										<h5 class="comment-author"><a href="#">John Smith</a></h5>
-										<div class="comment-meta">
-											<a href="#" class="comment-date link-style1">February 22, 2015</a>
-											<a class="comment-reply-link link-style3" href="#respond">Reply »</a>
-										</div>
-										<div class="comment-body">
-											<p>Ne omnis saperet docendi nec, eos ea alii molestiae aliquand. Latine fuisset mele, mandamus atrioque eu mea, wi forensib argumentum vim an. Te viderer conceptam sed, mea et delenit fabellas probat.</p>
-										</div>
-									</div>
-								</li>
-								<li class="comment">
-									<div class="avatar"><img alt="" src="images/avatar-02.jpg" class="avatar"></div>
-									<div class="comment-container">
-										<h5 class="comment-author"><a href="#">John Smith</a></h5>
-										<div class="comment-meta">
-											<a href="#" class="comment-date link-style1">February 22, 2015</a>
-											<a class="comment-reply-link link-style3" href="#respond">Reply »</a>
-										</div>
-										<div class="comment-body">
-											<p>Ne omnis saperet docendi nec, eos ea alii molestiae aliquand. Latine fuisset mele, mandamus atrioque eu mea, wi forensib argumentum vim an. Te viderer conceptam sed, mea et delenit fabellas probat.</p>
-										</div>
-									</div>
-									<ul class="children">
-										<li class="comment">
-											<div class="avatar"><img alt="" src="images/avatar-03.jpg" class="avatar"></div>
-											<div class="comment-container">
-												<h5 class="comment-author"><a href="#">Thomas Smith</a></h5>
-												<div class="comment-meta"><a href="#" class="comment-date link-style1">February 14, 2015</a><a class="comment-reply-link link-style3" href="#respond">Reply »</a></div>
-												<div class="comment-body">
-													<p>Labores pertinax theophrastus vim an. Error ditas in sea, per no omnis iisque nonumes. Est an dicam option, ad quis iriure saperet nec, ignota causae inciderint ex vix. Iisque qualisque imp duo eu, pro reque consequ untur. No vero laudem legere pri, error denique vis ne, duo iusto bonorum.</p>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</div>
-					</div>
-					
+
+
                 </div><!-- end col -->
 				<div class="col-lg-3 col-12 right-single">
 					<div class="widget-search">
 						<div class="site-search-area">
-							<form method="get" id="site-searchform" action="#">
+							<form method="get" id="site-searchform" action="{% url 'search' %}">
 								<div>
-									<input class="input-text form-control" name="search-k" id="search-k" placeholder="Search keywords..." type="text">
+									<input class="input-text form-control" name="search" placeholder="Search keywords..." type="text">
 									<input id="searchsubmit" value="Search" type="submit">
 								</div>
 							</form>
@@ -124,7 +57,7 @@
 						<h3 class="widget-title">Categories</h3>
 						<ul>
 							{% for category in categories %}
-							<li><a href="{% url 'courses_by_category' category.slug %}">{{category.name}}</a></li>
+								<li><a href="{% url 'courses_by_category' category.slug %}">{{category.name}}</a></li>
 							{% endfor %}
 						</ul>
 					</div>
@@ -132,11 +65,7 @@
 						<h3 class="widget-title">Search Tags</h3>
 						<ul class="tags">
 							{% for tag in tags %}
-							<li><a href="{% url 'courses_by_tag' tag.slug %}">
-								{% if tag.slug in request.path %}
-								<b> {{tag.name}}</b>
-								{% else %} {{tag.name}}{% endif %}
-							</a></li>
+								<li><a href="{% url 'courses_by_tag' tag.slug %}">{% if tag.slug in request.path %} <b>{{tag.name}}</b>{% else %}{{tag.name}}{% endif %}</a></li>
 							{% endfor %}
 						</ul>
 					</div>
@@ -144,5 +73,4 @@
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end section -->
-
-    {% endblock %}
+	{% endblock %}
